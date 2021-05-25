@@ -27,8 +27,34 @@ public class reminderCard {
 		initTimePutOff = LocalDateTime.now();
 	}
 	
-	public int timeDiff() {
+	public int timeDiff(int measure) {
+		switch (measure) {
+			case 1:
+				return LocalDateTime.now().getSecond() - initTimePutOff.getSecond();
+				
+			case 2:
+				return LocalDateTime.now().getMinute() - initTimePutOff.getMinute();
+			case 3:
+				return LocalDateTime.now().getHour() - initTimePutOff.getHour();
+			case 4:
+				//return LocalDateTime.now().getDayOfWeek() - initTimePutOff.getDayOfWeek(); dayOfMonth/4 maybe
+			case 5:
+				//week
+				break;
+			case 6:
+
+				return LocalDateTime.now().getMonth() - initTimePutOff.getMonth();
+				break;
+			case 7:
+				return LocalDateTime.now().getYear() - initTimePutOff.getYear();
+		}
 		return LocalDateTime.now().getSecond() - initTimePutOff.getSecond();
+	}
+	
+	//Returns a String displaying the time difference using the three smallest measurements
+	public String slotTime3() {
+		//if()
+		return null;
 	}
 	
 	

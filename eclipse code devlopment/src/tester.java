@@ -7,9 +7,7 @@ public class tester {
 		
 		System.out.println(a.getInitTimePutOff());
 		a.setTimeNow();
-		Scanner sc = new Scanner(System.in);
-		String pause = sc.next();
-		System.out.println(a.timeDiff());
+		System.out.println(a.getInitTimePutOff().getDayOfMonth());
 	}
 
 }
