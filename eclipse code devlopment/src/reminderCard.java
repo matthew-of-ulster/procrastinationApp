@@ -30,27 +30,40 @@ public class reminderCard {
 	public int timeDiff(int measure) {
 		switch (measure) {
 			case 1:
-				return LocalDateTime.now().getSecond() - initTimePutOff.getSecond();
-				
+				return checkSec();
 			case 2:
-				return LocalDateTime.now().getMinute() - initTimePutOff.getMinute();
+				int returnTime = LocalDateTime.now().getMinute() - initTimePutOff.getMinute();
+				if(returnTime<0) {
+					returnTime += 60;
+				}
+				return returnTime;
 			case 3:
+				
+				if((LocalDateTime.now().getMinute() - initTimePutOff.getMinute())<0) {
+					return (LocalDateTime.now().getHour()-1) - initTimePutOff.getHour();
+				}
 				return LocalDateTime.now().getHour() - initTimePutOff.getHour();
 			case 4:
-				//return LocalDateTime.now().getDayOfWeek() - initTimePutOff.getDayOfWeek(); dayOfMonth/4 maybe
+				return (LocalDateTime.now().getDayOfMonth() - initTimePutOff.getDayOfMonth()) - ((LocalDateTime.now().getDayOfMonth() - initTimePutOff.getDayOfMonth())/7)*7;
 			case 5:
-				//week
-				break;
+				return (LocalDateTime.now().getDayOfMonth() - initTimePutOff.getDayOfMonth())/7;
 			case 6:
-
-				return LocalDateTime.now().getMonth() - initTimePutOff.getMonth();
-				break;
+				return LocalDateTime.now().getMonthValue() - initTimePutOff.getMonthValue();
 			case 7:
 				return LocalDateTime.now().getYear() - initTimePutOff.getYear();
 		}
 		return LocalDateTime.now().getSecond() - initTimePutOff.getSecond();
 	}
 	
+	private boolean checkSec() {
+		int testInt = LocalDateTime.now().getSecond() - initTimePutOff.getSecond();
+		boolean returnBool = false;
+		if (testInt<0) {
+			returnBool=true;
+		}
+		return returnBool;
+	}
+
 	//Returns a String displaying the time difference using the three smallest measurements
 	public String slotTime3() {
 		//if()
