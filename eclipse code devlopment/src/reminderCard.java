@@ -1,6 +1,9 @@
 import java.time.LocalDateTime;
 
 public class reminderCard {
+	private char startChar;
+	private char[] threeSmall;
+	private int index;
 	//title of card to be displayed when scrolling through reminders, "calculus"
 	private String title;
 	//What the user is putting off, "finish calculus assignment 3".
@@ -114,9 +117,47 @@ public class reminderCard {
 	}
 
 	//Returns a String displaying the time difference using the three smallest measurements
-	public String slotTime3() {
-		//if()
-		return null;
+	public String getTime() {
+		String returnString = "";
+		returnString += "(7) - Years: " + timeDiff(7);
+		returnString += "\n(6) - Months: " + timeDiff(6);
+		returnString += "\n(5) - Weeks: " + timeDiff(5);
+		returnString += "\n(4) - Days: " + timeDiff(4);
+		returnString += "\n(3) - Hours: " + timeDiff(3);
+		returnString += "\n(2) - Minutes: " + timeDiff(2);
+		returnString += "\n(1) - Seconds: " + timeDiff(1);
+		return returnString;
+	}
+	public int[] slotTime3() {
+		int[] digits = new int[3];
+		if(timeDiff(7)>0) {
+			digits[0]=timeDiff(7);
+			digits[1]=timeDiff(6);
+			digits[2]=timeDiff(5);
+			startChar = 'y';
+		}else if (timeDiff(6)>0) {
+			digits[0] = timeDiff(6);
+			digits[1]=timeDiff(5);
+			digits[2]=timeDiff(4);
+			startChar = 'm';
+		}else if (timeDiff(5)>0) {
+			digits[0] = timeDiff(5);
+			digits[1]=timeDiff(4);
+			digits[2]=timeDiff(3);
+			startChar = 'w';
+		}else if (timeDiff(4)>0) {
+			digits[0] = timeDiff(4);
+			digits[1]=timeDiff(3);
+			digits[2]=timeDiff(2);
+			startChar = 'd';
+		}else{
+			digits[0] = timeDiff(3);
+			digits[1]=timeDiff(2);
+			digits[2]=timeDiff(1);
+			startChar = 'h';
+		}
+		setThreeSmall(startChar);
+		return digits;
 	}
 	
 	
@@ -133,9 +174,46 @@ public class reminderCard {
 	
 	
 	
+	public void setThreeSmall(char index) {
+		char[] temp = new char[3];
+		threeSmall = temp;
+		switch(index) {
+			case 'y':
+				threeSmall[0] = 'y';
+				threeSmall[1] = 'm';
+				threeSmall[2] = 'w';
+			break;
+			case 'm':
+				threeSmall[0] = 'm';
+				threeSmall[1] = 'w';
+				threeSmall[2] = 'd';
+			break;
+			case 'w':
+				threeSmall[0] = 'w';
+				threeSmall[1] = 'd';
+				threeSmall[2] = 'h';
+			break;
+			case 'd':
+				threeSmall[0] = 'd';
+				threeSmall[1] = 'h';
+				threeSmall[2] = 'm';
+			break;
+			case 'h':
+				threeSmall[0] = 'h';
+				threeSmall[1] = 'm';
+				threeSmall[2] = 's';
+			break;
+		}
+			
+			
+	}
+	public char[] getThreeSmall() {
+		return threeSmall;
+	}
 	
-	
-	
+	public char getStartChar() {
+		return startChar;
+	}
 	
 
 	public String getTitle() {
