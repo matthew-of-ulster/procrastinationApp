@@ -49,6 +49,7 @@ public class reminderCard {
 	}
 	
 	
+	//return the difference between the current time and the set time, pass in the appropriate int and the relevant time period difference will be returned
 	public int timeDiff(int measure) {
 		switch (measure) {
 			case 1:
